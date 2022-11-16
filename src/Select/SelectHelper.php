@@ -25,6 +25,7 @@ class SelectHelper
      * @param mixed[] $fieldSelection
      *
      * @return string[]
+     *
      * @reference https://github.com/nuwave/lighthouse/pull/1626
      */
     public static function getSelectColumns(Node $definitionNode, array $fieldSelection, string $modelName): array
@@ -108,8 +109,8 @@ class SelectHelper
             }
         }
 
-        $selectColumns = array_filter($selectColumns, function($column) use ($model) {
-            return !$model->hasGetMutator($column) && !method_exists($model, $column);
+        $selectColumns = array_filter($selectColumns, function ($column) use ($model) {
+            return ! $model->hasGetMutator($column) && ! method_exists($model, $column);
         });
 
         return array_unique($selectColumns);
